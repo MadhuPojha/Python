@@ -1,5 +1,4 @@
 """
-Inheritance
 Create a Python program that models a hierarchy of vehicles using inheritance. 
 Start with a base class Vehicle, and then create two or more derived classes (e.g., Car, Bicycle, Motorcycle) that inherit from the Vehicle class. 
 Each class should have specific attributes and methods related to the type of vehicle it represents.
@@ -18,14 +17,12 @@ Each class should have specific attributes and methods related to the type of ve
     their specific methods like honk_horn() or ring_bell().
 
 """
-
 class Vehicle:
     def __init__(self,name, brand, model, year):
         self.name = name
         self.brand = brand
         self.model = model
         self.year = year
-
     def start(self):
         print("Lets start and goo broom brommm!")
 
@@ -37,19 +34,19 @@ class Vehicle:
 
     def __str__(self):
         return f'The vehicle is {self.name}, brand: {self.brand}, model: {self.model}, manufactured in {self.year}'
-
+    
 class Car(Vehicle):
     def __init__(self, name, brand, model, year, num_doors):
         super().__init__(name, brand, model, year)
         self.nums_door = num_doors
 
+    def __str__(self):
+        return f'{super().__str__()} and has {self.nums_door} door'
+    
     def horn(self):
         print('Horn: Side plz beep beep')
 
-    def __str__(self):
-        return f'{super().__str__()} and has {self.nums_door} door'
-
-
+    
 class Motorcycle(Vehicle):
     def __init__(self, name, brand, model, year, num_gears):
         super().__init__(name, brand, model, year)
@@ -57,27 +54,32 @@ class Motorcycle(Vehicle):
 
     def __str__(self):
         return f'{super().__str__()} and has {self.num_gears} gears'
-
+    
 class Bicycle(Motorcycle):
-
     def __init__(self, name, brand, model, year, num_gears):
         super().__init__(name, brand, model, year, num_gears)
 
     def ring_bell(self):
         print('Horn: Side plz tring tring')
-    
 
 my_vehicle = Vehicle('Car', 'Volo', 'V10', 2024)
 my_car = Car('Car', 'Volvo', 'XC90', 1927, 4)
 my_byke = Motorcycle('Motercycle', 'Honda', 'MB50', 1959, 3)
 my_cycle = Bicycle('Bicycle', 'Fitnord', 'AVA 300', 2016, 7)
 
-print(my_car)
-my_car.horn()
-print(my_byke)
-print(my_cycle)
-my_cycle.ring_bell()
-my_vehicle.start()
-my_vehicle.fuel_up()
-my_vehicle.stop()
+print(my_car)        # The vehicle is Car, brand: Volvo, model: XC90, manufactured in 1927 and has 4 door
+my_car.horn()        # Horn: Side plz beep beep
+print(my_byke)       # The vehicle is Motercycle, brand: Honda, model: MB50, manufactured in 1959 and has 3 gears
+print(my_cycle)      # The vehicle is Bicycle, brand: Fitnord, model: AVA 300, manufactured in 2016 and has 7 gears
+my_cycle.ring_bell() # Horn: Side plz tring tring
+my_vehicle.start()   # Lets start and goo broom brommm!
+my_vehicle.fuel_up() # Its time to fill the fuel!
+my_vehicle.stop()    # Reached its time to stop!
+
+
+
+
+
+
+
 
