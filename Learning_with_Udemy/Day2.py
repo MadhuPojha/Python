@@ -60,7 +60,40 @@ my_toyota = Car()
 print(my_toyota.__dict__)   #output: {'speed': 100}
 #----------------------------------------------------------------------------------------------------------------------------------
 
+#OOP-reflection-introspection
+#TASK: Create a func that modifies all the string properties of any object by turning them into empty string
+def empty_string(user_object):
+    for prop_name in user_object.__dict__.keys():
+        prop_value = getattr(user_object, prop_name)
+        if isinstance(prop_value, str):
+            setattr(user_object, prop_name, '')
 
+class Doctor():
+    def __init__(self, fName='John', lName='Smith'):
+        self.fName = fName
+        self.lName = lName
+        self.__format_names()
+
+    def __format_names(self):
+        self.fName = self.fName.title()
+        self.lName = self.lName.title()
+
+    def introduce(self):
+        print('Hi, I am', self.fName)
+
+    def compare_name(self, name_to_compare):
+        if self.fName == self.compare_name:
+            print('We have the same name!')
+        else:
+            print('Sorry, my name is different..')
+
+    def get_first_last_name_together(self):
+        return self.fName + ' ' + self.lName
+    
+doc = Doctor('Alexander', 'Smith')
+doc.introduce()    # output: Hi, I am Alexander
+empty_string(doc)
+doc.introduce()    # output: Hi, I am
 
 
 
