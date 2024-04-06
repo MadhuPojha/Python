@@ -1,4 +1,4 @@
-#Instance, Class, Local Variables
+# OOP: Instance, Class, Local Variables
 class House():
     counter = 0     # class variable
     def __init__(self, address, area, price):
@@ -21,7 +21,7 @@ print(House.quality)        #printing class var
 #print(self.quality, quality) we cannot access these two var, Not allowed outside the class
 #-----------------------------------------------------------------------------------------------------------------------------------
 
-#OOP-Method
+# OOP-Method
 class Doctor():
     def __init__(self, fName='John', lName='Smith'):
         self.fName = fName
@@ -94,7 +94,138 @@ doc = Doctor('Alexander', 'Smith')
 doc.introduce()    # output: Hi, I am Alexander
 empty_string(doc)
 doc.introduce()    # output: Hi, I am
+#----------------------------------------------------------------------------------------------------------------------------------
 
+#OOP-Inheritance-intro
+
+class Vehicle:
+    pass
+
+class LandVehicle(Vehicle):
+    pass
+
+class WaterVehicle(Vehicle):
+    pass
+
+class Car(LandVehicle):
+    pass
+
+class Boat(WaterVehicle):
+    pass
+print(issubclass(LandVehicle, Vehicle))		# True
+print(issubclass(WaterVehicle, Vehicle))	# True
+
+print(issubclass(Car, LandVehicle))			# True
+print(issubclass(Car, WaterVehicle))		# False
+
+print(issubclass(Boat, LandVehicle))		# False
+print(issubclass(Boat, WaterVehicle))		# True
+#----------------------------------------------------------------------------------------------------------------------------------
+
+#OOP-Inheritance-properties:
+class Vehicle:
+	def __init__(self, speed):
+		self.speed = speed
+
+class LandVehicle(Vehicle):
+	def __init__(self, speed, wheel_count):
+			super().__init__(speed)	# or we can use this: Vehicle.__init__(self, speed)		
+			self.wheel_count = wheel_count
+
+class Car(LandVehicle):
+    pass
+
+car = Car(5, 10)
+print(car.__dict__)	# output:{'speed': 5, 'wheel_count': 10}
+print(car.speed)	# output: 5
+#----------------------------------------------------------------------------------------------------------------------------------
+
+#OOP-Inheritance-class-variables-methods
+
+class Vehicle:
+	class_msg = 'This is the message from the Vehicle class!'
+	def __init__(self, speed):
+		self.speed = speed
+
+class LandVehicle(Vehicle):
+	def __init__(self, speed, wheel_count):
+			super().__init__(speed)	# or we can use this: Vehicle.__init__(self, speed)		
+			self.wheel_count = wheel_count
+
+	def speed_up(self):
+		self.speed += 5
+
+class Car(LandVehicle):
+	def super_speed(self):
+		print('Super speed activated!')
+		super().speed_up()
+		super().speed_up()
+		super().speed_up()
+
+car = Car(10, 4)
+print(car.__dict__) 
+car.super_speed()
+print(car.__dict__) 
+car.speed_up()
+print(car.__dict__) 
+#----------------------------------------------------------------------------------------------------------------------------------
+
+#OOP-Property-method-overriding
+class Animal():
+	def __init__(self):
+		self.species = 'general'
+	def produce_sound(self):
+		print('General animal sound')
+
+class Dog(Animal):
+	def __init__(self):
+		self.species = 'Canis familiaris'
+	def produce_sound(self):
+		print('woof, woof!')
+                
+my_pet = Dog()
+print(my_pet.species)
+my_pet.produce_sound()	#override super class method
+#----------------------------------------------------------------------------------------------------------------------------------
+
+# OOP-isinstance-is
+class Vehicle:
+	def __init__(self, speed):
+		self.speed = speed
+
+class LandVehicle(Vehicle):
+	def __init__(self, speed, wheel_count):
+			super().__init__(speed)	# or we can use this: Vehicle.__init__(self, speed)		
+			self.wheel_count = wheel_count
+
+class Car(LandVehicle):
+    pass
+
+my_vehicle = Vehicle(50)
+my_landV = LandVehicle(50, 4)
+my_car = Car(60, 4)
+
+print(isinstance(my_vehicle, Car))
+print(isinstance(my_landV, Vehicle))
+print(isinstance(my_car, LandVehicle))
+
+print()
+my_vehicle = Vehicle(60)
+new_vehicle = my_vehicle
+print(my_vehicle is new_vehicle)
+my_vehicle = Vehicle(60)
+new_vehicle = Vehicle(60)
+print(my_vehicle is new_vehicle)
+
+num = 5
+num2 = 3
+num2 += 2
+print("is with int:", num is num2)
+str = 'Hello'
+str2 = 'Hell'
+str2 += 'o'
+print("is with string: ", str is str2)
+print("== with string", str == str2)
 
 
 
