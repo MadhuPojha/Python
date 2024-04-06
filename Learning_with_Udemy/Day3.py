@@ -117,3 +117,21 @@ print(PetrolVehicle.__bases__)	# output: (<class '__main__.Vehicle'>,)
 print(Car.__bases__)			# output: (<class '__main__.PetrolVehicle'>, <class '__main__.Rideable'>)
 
 #----------------------------------------------------------------------------------------------------------------
+
+# OOP-diamond-problem always Method Resolution Order
+
+class Vehicle:
+    def show_power_type(self):
+        print('I can use from various sources')
+class Electric_V(Vehicle):
+    def show_power_type(self):
+        print('I can use from electricity')
+class Petrol_V(Vehicle):
+    def show_power_type(self):
+        print('I can use from petrol')
+class HybridCar(Electric_V, Petrol_V):
+    pass
+
+toyota = HybridCar()
+toyota.show_power_type()
+    
