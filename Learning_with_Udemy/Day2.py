@@ -49,5 +49,19 @@ doc.compare_name('John')
 print(doc.__dict__)     #output: {'fName': 'Alexander', 'lName': 'Smith'}
 #----------------------------------------------------------------------------------------------------------------------------------
 
+#Can you have a default value for the self constructor parameter?
+# ANS: you can do that, but the value will be simply ignored by Python.
+
+class Car():
+  def __init__(self='default value', speed=100):    # default value for self ignored
+    self.speed = speed
+ 
+my_toyota = Car()
+print(my_toyota.__dict__)   #output: {'speed': 100}
+#----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 
